@@ -13,4 +13,3 @@ class Product:
         self.price = price
         self.quantity = quantity
         Category.products_count += quantity
-
