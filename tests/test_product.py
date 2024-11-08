@@ -7,4 +7,4 @@ def test_product_init(product_1, product_2, product_3):
     assert product_1.price == 180000.0
     assert product_3.quantity == 7
 
-    assert  Category.products_count == 20
+    assert Category.products_count == 20

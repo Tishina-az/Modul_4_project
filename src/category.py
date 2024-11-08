@@ -1,5 +1,5 @@
 class Category:
-    name:str
+    name: str
     description: str
     products: list
 
