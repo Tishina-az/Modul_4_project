@@ -9,4 +9,5 @@ def test_category_init(category_1, category_2):
     )
     assert len(category_1.products) == 2
 
-    assert Category.categories_count == 3
+    assert Category.categories_count == 2
+    assert Category.products_count == 3
