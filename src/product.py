@@ -33,3 +33,4 @@ class Product:
                 user_answer = input("Подтвердите снижение цены (Y/N): ").lower()
                 if user_answer == "y":
                     self.__price = new_price
+            self.__price = new_price

@@ -11,7 +11,7 @@ class Category:
         self.description = description
         self.__products = products
         Category.categories_count += 1
-        Category.product_count += len(products)
+        Category.product_count += len(self.__products)
 
     @property
     def products(self):
