@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category
+from src.iterator import ProductIterator
 from src.product import Product
 
 
@@ -46,3 +47,8 @@ def category_2(product_3):
         "станет вашим другом и помощником",
         products=[product_3],
     )
+
+
+@pytest.fixture
+def product_iterator(category_1):
+    return ProductIterator(category_1)

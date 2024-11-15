@@ -24,6 +24,10 @@ class Category:
             products_str += f"{prod.name}, {prod.price} руб. Остаток: {prod.quantity} шт.\n"
         return products_str
 
+    @property
+    def products_list(self):
+        return self.__products
+
     def add_product(self, new_product):
         """Метод для добавления нового товара в категорию"""
         self.__products.append(new_product)

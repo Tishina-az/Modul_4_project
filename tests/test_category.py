@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category
 
 
@@ -28,3 +30,15 @@ def test_category_str(category_1):
     """Тестируем вывод строковой информации по категории"""
     expected_output = "Смартфоны, количество продуктов: 13 шт."
     assert str(category_1) == expected_output
+
+
+def test_product_iterator(product_iterator):
+    """ Тестируем итератор списка продуктов"""
+    iter(product_iterator)
+    assert product_iterator.index == 0
+    assert next(product_iterator).description == "256GB, Серый цвет, 200MP камера"
+    assert product_iterator.index == 1
+    assert next(product_iterator).description == "512GB, Gray space"
+
+    with pytest.raises(StopIteration):
+        next(product_iterator)
