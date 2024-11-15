@@ -10,6 +10,9 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.'
+
     @classmethod
     def new_product(cls, product: dict, products: list):
         name, description, price, quantity = (value for value in product.values())
@@ -30,7 +33,7 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             if new_price < self.__price:
-                user_answer = input("Подтвердите снижение цены (Y/N): ").lower()
-                if user_answer == "y":
+                user_answer = input("Подтвердите снижение цены (Y/N): ")
+                if user_answer.lower() == "y":
                     self.__price = new_price
             self.__price = new_price
