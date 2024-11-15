@@ -37,3 +37,7 @@ class Product:
                 if user_answer.lower() == "y":
                     self.__price = new_price
             self.__price = new_price
+
+    def __add__(self, other):
+        result = self.__price * self.quantity + other.price * other.quantity
+        return result
