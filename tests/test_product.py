@@ -1,4 +1,4 @@
-from unittest.mock import patch
+# from unittest.mock import patch
 
 from src.product import Product
 
@@ -35,8 +35,7 @@ def test_product_price_minus(product_3, capsys):
     assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
 
 
-@patch("builtins.input")
-def test_product_price(mock_input, product_4):
+def test_product_price(product_4):
     """Тестируем получение цены и ее изменение в различных сценариях"""
     assert product_4.price == 23000.0  # Отображение текущей цены
 
@@ -52,7 +51,7 @@ def test_product_price(mock_input, product_4):
 #
 # @patch('builtins.input', side_effect=['n'])
 # def test_set_price_decrease_no(product_4):
-#     product_4.price = 3300.0  # Понижение цены и ее возврат после вопроса пользователю и его ответа "да"
+#     product_4.price = 3300.0  # Понижение цены и возврат старой после вопроса пользователю и его ответа "нет"
 #     assert product_4.price == 23000.0
 
 

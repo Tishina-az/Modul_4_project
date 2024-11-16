@@ -52,3 +52,9 @@ def category_2(product_3):
 @pytest.fixture
 def product_iterator(category_1):
     return ProductIterator(category_1)
+
+
+@pytest.fixture(autouse=True)
+def reset_product_count():
+    """Фикстура для обнуления product_count перед каждым тестом."""
+    Category.product_count = 0

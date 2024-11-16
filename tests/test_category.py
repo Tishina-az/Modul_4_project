@@ -24,7 +24,7 @@ def test_category_add_product(category_1, product_4):
     """Тестируем метод добавления продукта в категорию и обновление счётчика"""
     category_1.add_product(product_4)
     assert len(category_1.products_list) == 3
-    # assert category_1.product_count == 3
+    assert Category.product_count == 3
 
 
 def test_category_str(category_1):
