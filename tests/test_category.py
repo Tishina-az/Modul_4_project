@@ -27,6 +27,13 @@ def test_category_add_product(category_1, product_4):
     assert Category.product_count == 3
 
 
+def test_category_add_product_error(category_1):
+    """Тестируем возврат ошибки, при добавлении несуществующего продукта"""
+    with pytest.raises(TypeError):
+        category_1.add_product("Not a product")
+    assert Category.product_count == 2
+
+
 def test_category_str(category_1):
     """Тестируем вывод строковой информации по категории"""
     expected_output = "Смартфоны, количество продуктов: 13 шт."
@@ -34,7 +41,7 @@ def test_category_str(category_1):
 
 
 def test_product_iterator(product_iterator):
-    """ Тестируем итератор списка продуктов"""
+    """Тестируем итератор списка продуктов"""
     iter(product_iterator)
     assert product_iterator.index == 0
     assert next(product_iterator).description == "256GB, Серый цвет, 200MP камера"
