@@ -8,10 +8,10 @@ class Product:
 
     def __init__(self, name, description, price, quantity):
         """Инициализатор, принимающий название, описание, цену и количество продукта"""
-        self.name = name                                            # название
-        self.description = description                              # описание
-        self.__price = price                                        # цена
-        self.quantity = quantity                                    # количество в наличии
+        self.name = name  # название
+        self.description = description  # описание
+        self.__price = price  # цена
+        self.quantity = quantity  # количество в наличии
 
     def __str__(self):
         """Метод возвращающий информацию по продукту в строковом виде"""
@@ -48,26 +48,8 @@ class Product:
 
     def __add__(self, other):
         """Метод для получения общей стоимости продуктов"""
-        result = self.__price * self.quantity + other.price * other.quantity
-        return result
-
-
-class Smartphone(Product):
-    """ Смартфоны """
-
-    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
-        super().__init__(name, description, price, quantity)
-        self.efficiency = efficiency                                # производительность
-        self.model = model                                          # модель
-        self.memory = memory                                        # объем встроенной памяти
-        self.color = color                                          # цвет
-
-
-class LawnGrass(Product):
-    """ Трава газонная """
-
-    def __init__(self, name, description, price, quantity, country, germination_period, color):
-        super().__init__(name, description, price,quantity)
-        self.country = country                                      # страна-производитель
-        self.germination_period = germination_period                # срок прорастания
-        self.color = color                                          # цвет
+        if type(other) is self.__class__:
+            result = self.__price * self.quantity + other.price * other.quantity
+            return result
+        else:
+            raise TypeError
