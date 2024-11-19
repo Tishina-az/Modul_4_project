@@ -1,17 +1,25 @@
 class Product:
+    """Класс, возвращающий объект продукта и информацию по нему"""
+
     name: str
     description: str
     price: float
     quantity: int
 
     def __init__(self, name, description, price, quantity):
+        """Инициализатор, принимающий название, описание, цену и количество продукта"""
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        """Метод возвращающий информацию по продукту в строковом виде"""
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
     @classmethod
     def new_product(cls, product: dict, products: list):
+        """Метод, возвращающий новый или обновленный продукт в виде объекта"""
         name, description, price, quantity = (value for value in product.values())
         for prod in products:
             if prod.name == name:
@@ -22,15 +30,23 @@ class Product:
 
     @property
     def price(self):
+        """Геттер, возвращающий стоимость продукта"""
         return self.__price
 
     @price.setter
     def price(self, new_price):
+        """Сеттер для изменения стоимости продукта и проверки валидности"""
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             if new_price < self.__price:
-                user_answer = input("Подтвердите снижение цены (Y/N): ").lower()
-                if user_answer == "y":
+                user_answer = input("Подтвердите снижение цены (Y/N): ")
+                if user_answer.lower() == "y":
                     self.__price = new_price
-            self.__price = new_price
+            else:
+                self.__price = new_price
+
+    def __add__(self, other):
+        """Метод для получения общей стоимости продуктов"""
+        result = self.__price * self.quantity + other.price * other.quantity
+        return result
