@@ -10,5 +10,5 @@ class BaseProduct(ABC):
 
     @classmethod
     @abstractmethod
-    def new_product(cls, product, products):
+    def new_product(cls, *args, **kwargs):
         return cls
