@@ -11,7 +11,7 @@ def test_category_init(category_1, category_2):
         == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
     )
 
-    assert Category.categories_count == 2
+    assert Category.category_count == 2
     assert Category.product_count == 3
 
 
