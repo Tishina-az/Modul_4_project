@@ -8,10 +8,10 @@ class Product:
 
     def __init__(self, name, description, price, quantity):
         """Инициализатор, принимающий название, описание, цену и количество продукта"""
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
+        self.name = name  # название
+        self.description = description  # описание
+        self.__price = price  # цена
+        self.quantity = quantity  # количество в наличии
 
     def __str__(self):
         """Метод возвращающий информацию по продукту в строковом виде"""
@@ -48,5 +48,8 @@ class Product:
 
     def __add__(self, other):
         """Метод для получения общей стоимости продуктов"""
-        result = self.__price * self.quantity + other.price * other.quantity
-        return result
+        if type(other) is self.__class__:
+            result = self.__price * self.quantity + other.price * other.quantity
+            return result
+        else:
+            raise TypeError

@@ -1,4 +1,5 @@
 # from unittest.mock import patch
+import pytest
 
 from src.product import Product
 
@@ -65,3 +66,9 @@ def test_product_add(product_1, product_2):
     """Тестируем метод получения суммарной стоимости товаров"""
     expected_output = 2580000.0
     assert product_1 + product_2 == expected_output
+
+
+def test_product_add_error(smartphone_2, grass_2):
+    """Тестируем метод получения суммарной стоимости товаров"""
+    with pytest.raises(TypeError):
+        assert smartphone_2 + grass_2
