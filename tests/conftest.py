@@ -3,6 +3,7 @@ import pytest
 from src.category import Category
 from src.iterator import ProductIterator
 from src.lawn_grass import LawnGrass
+from src.order import Order
 from src.product import Product
 from src.smartphone import Smartphone
 
@@ -86,3 +87,13 @@ def grass_1():
 def grass_2():
     return LawnGrass("Газонная трава 2", "Выносливая трава",
                      450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+
+@pytest.fixture
+def order_1(grass_1):
+    return Order(grass_1, 5)
+
+
+@pytest.fixture
+def order_2(smartphone_2):
+    return Order(smartphone_2, 2)
