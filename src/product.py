@@ -1,4 +1,8 @@
-class Product:
+from src.base_product import BaseProduct
+from src.printing_mixin import PrintingMixin
+
+
+class Product(BaseProduct, PrintingMixin):
     """Класс, возвращающий объект продукта и информацию по нему"""
 
     name: str
@@ -12,6 +16,7 @@ class Product:
         self.description = description  # описание
         self.__price = price  # цена
         self.quantity = quantity  # количество в наличии
+        super().__init__()
 
     def __str__(self):
         """Метод возвращающий информацию по продукту в строковом виде"""
