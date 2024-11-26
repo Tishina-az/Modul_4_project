@@ -50,3 +50,9 @@ def test_product_iterator(product_iterator):
 
     with pytest.raises(StopIteration):
         next(product_iterator)
+
+
+def test_middle_price(category_1, category_empty):
+    """Тестируем подсчёт средней цены продукта в категории"""
+    assert category_1.middle_price() == 195000.0
+    assert category_empty.middle_price() == 0

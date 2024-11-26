@@ -1,4 +1,6 @@
-# from unittest.mock import patch
+import unittest
+from unittest.mock import patch
+
 import pytest
 
 from src.product import Product
@@ -45,16 +47,20 @@ def test_product_price(product_4):
     assert product_4.price == 33000.0
 
 
-# @patch('builtins.input', side_effect=['y'])
-# def test_set_price_decrease_yes(product_4):
-#     product_4.price = 3300.0  # Понижение цены и ее возврат после вопроса пользователю и его ответа "да"
-#     assert product_4.price == 3300.0
-#
-#
-# @patch('builtins.input', side_effect=['n'])
-# def test_set_price_decrease_no(product_4):
-#     product_4.price = 3300.0  # Понижение цены и возврат старой после вопроса пользователю и его ответа "нет"
-#     assert product_4.price == 23000.0
+class TestProduct(unittest.TestCase):
+    """Класс для тестирования изменения цены продукта"""
+    product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+    def test_set_product_price_yes(self):
+        with patch('builtins.input', return_value='y'):
+            self.product.price = 80000.0
+        self.assertEqual(self.product.price, 80000.0)
+
+    def test_set_product_price_no(self):
+        with patch('builtins.input', return_value='n'):
+            current_price = self.product.price
+            self.product.price = 80.0
+        self.assertEqual(self.product.price, current_price)
 
 
 def test_product_str(product_2):
@@ -73,3 +79,9 @@ def test_product_add_error(smartphone_2, grass_2):
     """Тестируем метод получения суммарной стоимости товаров"""
     with pytest.raises(TypeError):
         assert smartphone_2 + grass_2
+
+
+def test_product_add_empty():
+    """Тестируем возвращение исключения при нулевом количестве товара"""
+    with pytest.raises(ValueError):
+        Product("Бракованный товар", "Неверное количество", 1000.0, 0)
