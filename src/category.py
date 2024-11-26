@@ -46,3 +46,12 @@ class Category(BaseOrder):
         for prod in self.__products:
             products_quantity += prod.quantity
         return f"{self.name}, количество продуктов: {products_quantity} шт."
+
+    def middle_price(self):
+        """ Метод подсчета средней цены товара в категории"""
+        try:
+            avg_price = sum([product.price for product in self.__products]) / len(self.__products)
+        except ZeroDivisionError:
+            return 0
+        else:
+            return round(avg_price, 2)
