@@ -15,7 +15,10 @@ class Product(BaseProduct, PrintingMixin):
         self.name = name  # название
         self.description = description  # описание
         self.__price = price  # цена
-        self.quantity = quantity  # количество в наличии
+        if quantity > 0:
+            self.quantity = quantity  # количество в наличии
+        else:
+            raise ValueError('Товар с нулевым количеством не может быть добавлен.')
         super().__init__()
 
     def __str__(self):
