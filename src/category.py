@@ -1,14 +1,15 @@
+from src.base_order import BaseOrder
 from src.product import Product
 
 
-class Category:
+class Category(BaseOrder):
     """Класс представляет информацию по категориям товаров со списком товаров"""
 
     name: str
     description: str
     products: list
 
-    categories_count = 0
+    category_count = 0
     product_count = 0
 
     def __init__(self, name, description, products):
@@ -16,7 +17,7 @@ class Category:
         self.name = name
         self.description = description
         self.__products = products
-        Category.categories_count += 1
+        Category.category_count += 1
         Category.product_count += len(self.__products)
 
     @property

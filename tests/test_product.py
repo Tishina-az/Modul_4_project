@@ -27,6 +27,7 @@ def test_product_new(product_1, product_2):
     assert new_product.name == "Samsung Galaxy S23 Ultra"
     assert new_product.quantity == 10
     assert new_product.price == 180000.0
+    assert new_product.description == "256GB, Серый цвет, 200MP камера"
 
 
 def test_product_price_minus(product_3, capsys):
