@@ -102,3 +102,8 @@ def order_1(grass_1):
 @pytest.fixture
 def order_2(smartphone_2):
     return Order(smartphone_2, 2)
+
+
+@pytest.fixture
+def order_empty(smartphone_2):
+    return Order(smartphone_2, 0)
