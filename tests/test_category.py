@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category
+# from src.product import Product
 
 
 def test_category_init(category_1, category_2):
@@ -50,3 +51,24 @@ def test_product_iterator(product_iterator):
 
     with pytest.raises(StopIteration):
         next(product_iterator)
+
+
+def test_middle_price(category_1, category_empty):
+    """Тестируем подсчёт средней цены продукта в категории"""
+    assert category_1.middle_price() == 195000.0
+    assert category_empty.middle_price() == 0
+
+#
+# def test_my_exception(category_2, product_3, capsys):
+#     assert product_3.quantity == 7
+#
+#     category_2.add_product(product_3)
+#     message = capsys.readouterr()
+#     assert message.out.strip().split('\n')[-1] == 'Работа метода завершена.'
+#     assert message.out.strip().split('\n')[-2] == 'Товар добавлен успешно!'
+#
+#     product_5 = Product("Iphone 15", "512GB, Gray space", 210000.0, 0)
+#     category_2.add_product(product_5)
+#     message = capsys.readouterr()
+#     assert message.out.strip().split('\n')[-1] == 'Работа метода завершена.'
+#     assert message.out.strip().split('\n')[-2] == 'Нельзя добавить продукт с нулевым количеством!'
