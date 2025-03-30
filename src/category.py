@@ -1,4 +1,5 @@
 from src.base_order import BaseOrder
+from src.exceptions import ZeroQuantityProduct
 from src.product import Product
 
 
@@ -35,8 +36,17 @@ class Category(BaseOrder):
     def add_product(self, new_product):
         """Метод для добавления нового товара в категорию"""
         if isinstance(new_product, Product):
-            self.__products.append(new_product)
-            Category.product_count += 1
+            try:
+                if new_product.quantity <= 0:
+                    raise ZeroQuantityProduct('Нельзя добавить продукт с нулевым количеством!')
+            except ZeroQuantityProduct as e:
+                print(str(e))
+            else:
+                self.__products.append(new_product)
+                Category.product_count += 1
+                print('Товар добавлен успешно!')
+            finally:
+                print('Работа метода завершена.')
         else:
             raise TypeError
 
@@ -46,3 +56,12 @@ class Category(BaseOrder):
         for prod in self.__products:
             products_quantity += prod.quantity
         return f"{self.name}, количество продуктов: {products_quantity} шт."
+
+    def middle_price(self):
+        """ Метод подсчета средней цены товара в категории"""
+        try:
+            avg_price = sum([product.price for product in self.__products]) / len(self.__products)
+        except ZeroDivisionError:
+            return 0
+        else:
+            return round(avg_price, 2)

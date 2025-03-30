@@ -53,6 +53,11 @@ def category_2(product_3):
 
 
 @pytest.fixture
+def category_empty():
+    return Category("Пустая категория", "Категория без продуктов", [])
+
+
+@pytest.fixture
 def product_iterator(category_1):
     return ProductIterator(category_1)
 
@@ -97,3 +102,8 @@ def order_1(grass_1):
 @pytest.fixture
 def order_2(smartphone_2):
     return Order(smartphone_2, 2)
+
+
+@pytest.fixture
+def order_empty(smartphone_2):
+    return Order(smartphone_2, 0)

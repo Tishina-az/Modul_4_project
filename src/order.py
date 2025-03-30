@@ -1,4 +1,5 @@
 from src.base_order import BaseOrder
+from src.exceptions import ZeroQuantityProduct
 from src.product import Product
 
 
@@ -9,7 +10,10 @@ class Order(BaseOrder):
     def __init__(self, product: Product, quantity):
         """ Конструктор для класса Заказ """
         self.product = product
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ZeroQuantityProduct('Количество товара должно быть больше нуля.')
         self.total_cost = self.product.price * self.quantity
         Order.order_count += 1
 
